@@ -10,9 +10,10 @@ class BoardsController < ApplicationController
   def show
     the_id = params.fetch("path_id")
 
-    matching_boards = Board.where({ :id => the_id })
+    @the_board = Board.where({ :id => the_id }).at(0)
+    @active_posts = @the_board.posts.where("expires_on >= ?", Date.today)
+    @expired_posts = @the_board.posts.where("expires_on < ?", Date.today)
 
-    @the_board = matching_boards.at(0)
 
     render({ :template => "boards/show" })
   end
@@ -23,7 +24,7 @@ class BoardsController < ApplicationController
 
     if the_board.valid?
       the_board.save
-      redirect_to("/boards", { :notice => "Board created successfully." })
+      redirect_to("/boards/#{the_board.id}", { :notice => "Board created successfully." })
     else
       redirect_to("/boards", { :alert => the_board.errors.full_messages.to_sentence })
     end

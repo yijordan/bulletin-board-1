@@ -42,3 +42,97 @@
 </div>
 
 <hr>
+
+<div>
+  <h2>Active posts</h2>
+  <div>
+    <table border="1">
+      <tr>
+
+        <th>
+          Title
+        </th>
+
+        <th>
+          Body
+        </th>
+
+        <th>
+          Posted on
+        </th>
+
+        <th>
+          Expires on
+        </th>
+      </tr>
+
+      <% @active_posts.order({ :expires_on => :desc }).each do |a_post| %>
+      <tr>
+
+        <td>
+          <%= a_post.title %>
+        </td>
+
+        <td>
+          <%= a_post.body %>
+        </td>
+
+        <td>
+          <%= a_post.created_at %>
+        </td>
+
+        <td>
+          <%= a_post.expires_on %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<div>
+  <h2>Expired posts</h2>
+  <div>
+    <table border="1">
+      <tr>
+
+        <th>
+          Title
+        </th>
+
+        <th>
+          Body
+        </th>
+
+        <th>
+          Posted on
+        </th>
+
+        <th>
+          Expires on
+        </th>
+      </tr>
+
+      <% @expired_posts.order({ :expires_on => :desc }).each do |a_post| %>
+      <tr>
+
+        <td>
+          <%= a_post.title %>
+        </td>
+
+        <td>
+          <%= a_post.body %>
+        </td>
+
+        <td>
+          <%= a_post.created_at %>
+        </td>
+
+        <td>
+          <%= a_post.expires_on %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
