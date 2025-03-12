@@ -14,7 +14,7 @@
       Add a new post
     </h2>
 
-    <form action="/insert_board" method="post">
+    <form action="/insert_post" method="post">
       <div>
         <label for="title_box">
           Title
@@ -31,8 +31,10 @@
         <label for="expires_on_box">
           Expires on
         </label>
-        <input type="date" id="expires_on_box" name="expiration">
+        <input type="date" id="expires_on_box" name="expires_on">
       </div>
+
+      <input type="hidden" name="board_id" value="<%= @the_board.id %>">
 
       <button>
         Add post
@@ -66,7 +68,7 @@
         </th>
       </tr>
 
-      <% @active_posts.order({ :expires_on => :desc }).each do |a_post| %>
+      <% @active_posts.order({ :expires_on => :asc }).each do |a_post| %>
       <tr>
 
         <td>
