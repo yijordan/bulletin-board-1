@@ -40,11 +40,11 @@
       </div>
 
       <div>
-        <label for="board_id_box">
-          Board
-        </label>
-
-        <input type="text" id="board_id_box" name="board_id">
+        <select name="board_id" id="board_id_box">
+          <% Board.all.each do |board| %>
+            <option value="<%= board.id %>"><%= board.name %></option>
+          <% end %>
+        </select>
       </div>
       <button>
         Create post
